@@ -14,3 +14,23 @@ type Problems() =
         |> Seq.takeWhile(fun x -> x <= 4000000)
         |> Seq.filter(fun x -> x % 2 = 0)
         |> Seq.sum
+
+    member x.problem3 = //What is the largest prime factor of the number 600851475143 ?
+        printf "Problem 3: "
+       
+        let rec divideByTwo (num: int64) =
+            match System.Math.DivRem(num, 2L) with
+            | (1L, _) -> 2L
+            | (x, 0L) -> divideByTwo x
+            | _       -> num
+
+        let getMaxFactor (num: int64) =
+            let num = divideByTwo num
+            let rec divide (num: int64) (div: int64) =
+                match System.Math.DivRem(num, div) with
+                | (x, 0L) -> if div = num then num else divide x div
+                | _       -> if div * div >= num then num else divide num (div + 2L)
+            
+            divide num 3L
+            
+        getMaxFactor 600851475143L
