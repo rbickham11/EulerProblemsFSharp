@@ -43,5 +43,25 @@ type Problems() =
         
         [for x in 100..999 do for y in x..999 do if isPalindrome (x * y) then yield x * y] 
         |> List.max
-            
-            
+        
+    member x.problem5 = 
+        printf "Problem 5: "
+        let divByAll num =
+            {1..20} |> Seq.forall (fun x -> num % x = 0)
+
+        Seq.unfold (fun n -> Some(n, n + 1)) 1
+        |> Seq.map (fun n -> n * 20)
+        |> Seq.filter (fun n -> divByAll n)
+        |> Seq.head
+
+    member x.problem6 =
+        printf "Problem 6: "
+        let nums = {1..100}
+        
+        let sumOfSquares =
+            nums
+            |> Seq.map (fun n -> n * n)
+            |> Seq.sum
+        let seqSum = Seq.sum nums
+
+        (seqSum * seqSum) - sumOfSquares

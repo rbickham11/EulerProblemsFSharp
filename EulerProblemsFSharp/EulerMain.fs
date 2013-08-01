@@ -15,5 +15,9 @@ let main argv =
     printfn "%d (%dms)" eu1.problem3 stopWatch.ElapsedMilliseconds
     stopWatch.Restart()
     printfn "%d (%dms)" eu1.problem4 stopWatch.ElapsedMilliseconds
+    stopWatch.Restart()
+    printfn "%d (%dms)" eu1.problem5 stopWatch.ElapsedMilliseconds
+    stopWatch.Restart()
+    printfn "%d (%dms)" eu1.problem6 stopWatch.ElapsedMilliseconds
     Console.ReadKey() |> ignore
     0
