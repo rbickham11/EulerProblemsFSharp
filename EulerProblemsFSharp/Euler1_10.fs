@@ -17,7 +17,6 @@ type Problems() =
 
     member x.problem3 = //What is the largest prime factor of the number 600851475143 ?
         printf "Problem 3: "
-       
         let rec divideByTwo (num: int64) =
             match System.Math.DivRem(num, 2L) with
             | (1L, _) -> 2L
@@ -34,3 +33,15 @@ type Problems() =
             divide num 3L
             
         getMaxFactor 600851475143L
+
+    member x.problem4 = //Find the largest palindrome made from the product of two 3-digit numbers.
+        printf "Problem 4: "
+        let isPalindrome num =
+            let forward = (string num).ToCharArray()
+            let reversed = forward |> Array.rev
+            forward = reversed
+        
+        [for x in 100..999 do for y in x..999 do if isPalindrome (x * y) then yield x * y] 
+        |> List.max
+            
+            
