@@ -3,6 +3,11 @@
 open System
 
 type Problems() =
+    let isPrime n =
+        [2L..float n |> Math.Sqrt |> int64]
+        |> Seq.filter (fun m -> n % m = 0L)
+        |> Seq.length = 0
+
     member x.problem1 =  //Find the sum of all the multiples of 3 or 5 below 1000.
         printf "Problem 1: "
         [1..999]
@@ -44,7 +49,7 @@ type Problems() =
         [for x in 100..999 do for y in x..999 do if isPalindrome (x * y) then yield x * y] 
         |> List.max
         
-    member x.problem5 = 
+    member x.problem5 = //What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
         printf "Problem 5: "
         let divByAll num =
             {1..20} |> Seq.forall (fun x -> num % x = 0)
@@ -54,7 +59,7 @@ type Problems() =
         |> Seq.filter (fun n -> divByAll n)
         |> Seq.head
 
-    member x.problem6 =
+    member x.problem6 = //Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
         printf "Problem 6: "
         let nums = {1..100}
         
@@ -65,3 +70,9 @@ type Problems() =
         let seqSum = Seq.sum nums
 
         (seqSum * seqSum) - sumOfSquares
+
+    member x.problem7 = //What is the 10001st prime number?
+        printf "Problem 7: "
+        Seq.unfold(fun n -> Some(n, n + 2L)) 3L
+        |> Seq.filter(fun n -> isPrime n)
+        |> Seq.nth 9999
