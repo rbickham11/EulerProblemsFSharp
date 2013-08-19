@@ -104,5 +104,21 @@ type Problems() =
         |> Seq.map(fun x -> x |> Seq.fold(fun acc x -> acc * int (x.ToString())) 1)
         |> Seq.max
 
+    member x.problem9 = //There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find the product abc.
+        printf "Problem 9: "
 
+        let isPythag (nums: int * int * int) =
+            let a, b, c = nums
+            let sorted = [a; b; c;] |> List.sort
+            sorted.[0] * sorted.[0] + sorted.[1] * sorted.[1] = sorted.[2] * sorted.[2]
+
+        let modCondition n = n % 3 = 0 || n % 4 = 0 || n % 5 = 0
+        let range = [1..1000]
+        let triplets = seq {for a in range do if modCondition a then for b in range do if modCondition b then 
+                            for c in range do if modCondition c && c > a && c > b && c % 2 = 1 && a + b + c = 1000 then yield (a, b, c)}
+                            |> Seq.filter isPythag
+        
+        let a, b, c = triplets |> Seq.head
+        a * b * c
+        
         
