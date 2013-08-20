@@ -1,8 +1,10 @@
 ﻿module EulerProblemsFSharp.Euler1_10
 
 open System
+open System.Diagnostics
 
 type Problems() =
+    let stopWatch = new Stopwatch()
     let isPrime n =
         [2L..float n |> Math.Sqrt |> int64]
         |> Seq.filter (fun m -> n % m = 0L)
@@ -121,4 +123,25 @@ type Problems() =
         let a, b, c = triplets |> Seq.head
         a * b * c
         
-        
+    member x.problem10 = //Find the sum of all the primes below two million.
+        ()
+
+    member x.runAll =
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem1 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem2 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem3 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem4 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem5 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem6 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem7 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem8 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem9 stopWatch.ElapsedMilliseconds
