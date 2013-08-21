@@ -8,8 +8,7 @@ let main argv =
     let eu1 = new EulerProblemsFSharp.Euler1_10.Problems()
 
     stopWatch.Restart()
-    eu1.runAll
-    printfn "(%dms)" stopWatch.ElapsedMilliseconds
+    printfn "%d (%dms)" eu1.problem10 stopWatch.ElapsedMilliseconds
 
     Console.ReadKey() |> ignore
     0

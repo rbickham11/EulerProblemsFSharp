@@ -1,6 +1,7 @@
 ﻿module EulerProblemsFSharp.Euler1_10
 
 open System
+open System.Collections
 open System.Diagnostics
 
 type Problems() =
@@ -9,6 +10,13 @@ type Problems() =
         [2L..float n |> Math.Sqrt |> int64]
         |> Seq.filter (fun m -> n % m = 0L)
         |> Seq.length = 0
+
+    let getPrimes limit =
+        let prime = new BitArray(int limit, true)
+        for n in 2L..limit - 1L do
+            if prime.Get(int n) then
+                for m in n * 2L..n..limit - 1L do prime.Set(int m, false)
+        seq {for n in 2L..limit - 1L do if prime.Get(int n) then yield n}
 
     member x.problem1 =  //Find the sum of all the multiples of 3 or 5 below 1000.
         printf "Problem 1: "
@@ -100,7 +108,7 @@ type Problems() =
                      "07198403850962455444362981230987879927244284909188" +
                      "84580156166097919133875499200524063689912560717606" +
                      "05886116467109405077541002256983155200055935729725" +
-                     "71636269561882670428252483600823257530420752963450";
+                     "71636269561882670428252483600823257530420752963450"
         bigNum
         |> Seq.windowed 5
         |> Seq.map(fun x -> x |> Seq.fold(fun acc x -> acc * int (x.ToString())) 1)
@@ -124,7 +132,8 @@ type Problems() =
         a * b * c
         
     member x.problem10 = //Find the sum of all the primes below two million.
-        ()
+        printf "Problem 10: "
+        getPrimes 2000000L |> Seq.sum
 
     member x.runAll =
         stopWatch.Restart()
@@ -145,3 +154,5 @@ type Problems() =
         printfn "%d (%dms)" x.problem8 stopWatch.ElapsedMilliseconds
         stopWatch.Restart()
         printfn "%d (%dms)" x.problem9 stopWatch.ElapsedMilliseconds
+        stopWatch.Restart()
+        printfn "%d (%dms)" x.problem10 stopWatch.ElapsedMilliseconds
