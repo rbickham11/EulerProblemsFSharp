@@ -1,22 +1,11 @@
 ﻿module EulerProblemsFSharp.Euler1_10
 
 open System
-open System.Collections
 open System.Diagnostics
+open EulerToolbox
 
 type Problems() =
     let stopWatch = new Stopwatch()
-    let isPrime n =
-        [2L..float n |> Math.Sqrt |> int64]
-        |> Seq.filter (fun m -> n % m = 0L)
-        |> Seq.length = 0
-
-    let getPrimes limit =
-        let prime = new BitArray(int limit, true)
-        for n in 2L..limit - 1L do
-            if prime.Get(int n) then
-                for m in n * 2L..n..limit - 1L do prime.Set(int m, false)
-        seq {for n in 2L..limit - 1L do if prime.Get(int n) then yield n}
 
     member x.problem1 =  //Find the sum of all the multiples of 3 or 5 below 1000.
         printf "Problem 1: "

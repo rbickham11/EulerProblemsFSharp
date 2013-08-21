@@ -45,6 +45,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EulerToolbox.fs" />
     <Compile Include="Euler1_10.fs" />
     <None Include="App.config" />
     <Compile Include="EulerMain.fs" />
